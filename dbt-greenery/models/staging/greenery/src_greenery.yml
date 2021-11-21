@@ -3,6 +3,16 @@ sources:
 - name: greenery
   database: dbt
   schema: public
+
+  quoting:
+    database: false
+    schema: false
+    identifier: false
+
+  freshness:
+    warn_after: {count: 24, period: hour}
+    error_after: {count: 48, period: hour}
+    
   tables:
   - name: addresses
   - name: events

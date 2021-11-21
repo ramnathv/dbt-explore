@@ -1,41 +1,49 @@
 version: 2
 models:
 - name: stg_greenery__addresses
-  description: ''
+  description: >
+    Contains information about each address
   columns:
   - name: id
-    description: ''
+    description: 'The unique identifier'
   - name: address_id
-    description: ''
+    description: 'The primary key of each address'
     tests: [not_null, unique]
   - name: address
-    description: ''
+    description: 'The street address'
   - name: zipcode
-    description: ''
+    description: 'The 5-digit zip code'
   - name: state
-    description: ''
+    description: 'The full name of the state'
   - name: country
-    description: ''
+    description: 'The full name of the country'
 - name: stg_greenery__events
-  description: ''
+  description: >
+    Contains information about each event
   columns:
   - name: id
-    description: ''
+    description: 'The unique identifier'
   - name: event_id
-    description: ''
+    description: 'The primary key for the events table'
     tests: [not_null]
   - name: session_id
-    description: ''
+    description: 'A foreign key to the sessions table'
     tests: [not_null]
   - name: user_id
-    description: ''
+    description: 'A foreign key to the users table'
     tests: [not_null]
   - name: page_url
-    description: ''
+    description: 'The url of the page visited'
   - name: created_at
-    description: ''
+    description: 'A timestamp for the event'
   - name: event_type
-    description: ''
+    description: >
+      The type of event: 
+        - account_created
+        - add_to_cart
+        - delete_from_cart
+        - checkout
+        - package_shipped
     tests:
       - accepted_values:
           values: 
@@ -46,25 +54,28 @@ models:
             - checkout
             - package_shipped
 - name: stg_greenery__order_items
-  description: ''
+  description: >
+    Contains information about items in an order
   columns:
   - name: id
-    description: ''
+    description: 'The unique identifier'
   - name: order_id
-    description: ''
+    description: 'The foreign key to the orders table'
     tests: [not_null]
   - name: product_id
-    description: ''
+    description: 'The foreign key to the products table'
     tests: [not_null]
   - name: quantity
-    description: ''
+    description: 'The quantity ordered'
+    tests: [positive_values]
 - name: stg_greenery__orders
-  description: ''
+  description: >
+    Contains information about each order
   columns:
   - name: id
-    description: ''
+    description: 'The unique identifier'
   - name: order_id
-    description: ''
+    description: 'The primary key identifying an order'
     tests: 
       - not_null
       - unique
@@ -72,91 +83,102 @@ models:
            to: ref('stg_greenery__orders')
            field: order_id
   - name: user_id
-    description: ''
+    description: 'A foreign key to the users table'
     tests:
       - not_null
       - relationships:
           to: ref('stg_greenery__users')
           field: user_id
   - name: promo_id
-    description: ''
+    description: 'A foreign key to the promos table'
   - name: address_id
-    description: ''
+    description: 'A foreign key to the addresses table'
     tests:
       - not_null
       - relationships:
           to: ref('stg_greenery__addresses')
           field: address_id
   - name: created_at
-    description: ''
+    description: 'A timestamp for when the order entry was created'
   - name: order_cost
-    description: ''
+    description: 'The purchase cost of the order'
     tests: [positive_values]
   - name: shipping_cost
-    description: ''
+    description: 'This cost for shipping the order'
     tests: [positive_values]
   - name: order_total
-    description: ''
+    description: 'The total cost of the order'
     # tests: [positive_values]
   - name: tracking_id
-    description: ''
+    description: 'The tracking id for the shipment'
   - name: shipping_service
-    description: ''
+    description: 'The shipping service used'
   - name: estimated_delivery_at
-    description: ''
+    description: 'A timestamp for the estimated delivery'
   - name: delivered_at
-    description: ''
+    description: 'A timestamp for when the delivrey was actually made'
   - name: status
-    description: ''
+    description: 'The status of the order'
+    tests:
+      - accepted_values:
+          values: [pending, preparing, shipped, delivered]
 - name: stg_greenery__products
-  description: ''
+  description: >
+    Contains information about each product
   columns:
   - name: id
-    description: ''
+    description: 'The unique identifier'
   - name: product_id
+    description: 'The primary key identifying the product'
     tests:
       - not_null
       - unique
-    description: ''
   - name: name
-    description: ''
+    description: 'The name of the product'
   - name: price
-    description: ''
+    description: 'The price of the product'
     tests: [positive_values]
   - name: quantity
-    description: ''
+    description: 'The quantity of the product'
     tests: [positive_values]
 - name: stg_greenery__promos
-  description: ''
+  description: >
+    Contains information about promotions
   columns:
   - name: id
-    description: ''
+    description: 'The unique identifier'
   - name: promo_id
-    description: ''
+    description: 'The primary key identifying the promo'
     tests: [not_null, unique]
-  - name: discout
-    description: ''
+  - name: discount
+    description: 'The percentage of discount provided'
   - name: status
-    description: ''
+    description: 'The status of the promo'
+    tests:
+      - accepted_values:
+          values: [active, inactive]
 - name: stg_greenery__users
-  description: ''
+  description: >
+    Contains information about each user
   columns:
   - name: id
-    description: ''
+    description: 'The unique identifier'
   - name: user_id
-    description: ''
+    description: 'The primary key identifying each user'
     tests: [not_null, unique]
-  - name: first_name
-    description: ''
-  - name: last_name
-    description: ''
-  - name: email
-    description: ''
-  - name: phone_number
-    description: ''
-  - name: created_at
-    description: ''
-  - name: updated_at
-    description: ''
   - name: address_id
-    description: ''
+    description: 'A foreign key to the addresses table'
+  - name: first_name
+    description: 'The first name of the user'
+  - name: last_name
+    description: 'The last name of the user'
+  - name: email
+    description: 'The email of the user'
+  - name: phone_number
+    description: 'The phone number of the user'
+  - name: created_at
+    description: 'A timestamp for when the entry was created'
+  - name: updated_at
+    description: 'A timestamp for when the entry was updated'
+    tests: [not_null]
+

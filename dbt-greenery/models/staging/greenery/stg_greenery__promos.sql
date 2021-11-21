@@ -10,7 +10,7 @@ renamed as (
     select
         id,
         promo_id,
-        discout,
+        discout AS discount,
         status
 
     from source
