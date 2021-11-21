@@ -138,40 +138,6 @@ models:
     description: ''
   - name: status
     description: ''
-- name: stg_greenery__superheroes
-  description: ''
-  columns:
-  - name: id
-    description: ''
-  - name: name
-    description: ''
-  - name: gender
-    description: ''
-  - name: eye_color
-    description: ''
-  - name: race
-    description: ''
-  - name: hair_color
-    description: ''
-  - name: height
-    description: ''
-    tests: [positive_values]
-  - name: publisher
-    description: ''
-  - name: skin_color
-    description: ''
-  - name: alignment
-    description: ''
-  - name: weight_lbs
-    description: ''
-    tests: [positive_values]
-  - name: weight_kgs
-    description: ''
-    tests: [positive_values]
-  - name: created_at
-    description: ''
-  - name: updated_at
-    description: ''
 - name: stg_greenery__users
   description: ''
   columns:

@@ -1,14 +1,14 @@
-{% snapshot superheroes_snapshot %}
+{% snapshot users_snapshot %}
+
 {{
     config(
-        unique_key='id',
+        unique_key='user_id',
         strategy='timestamp',
         updated_at='updated_at'
     )
 }}
 
 SELECT *
-  FROM {{ source('tutorial', 'superheroes') }}
-
+  FROM {{ source('greenery', 'users') }}
 
 {% endsnapshot %}

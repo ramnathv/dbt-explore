@@ -10,5 +10,4 @@ sources:
   - name: orders
   - name: products
   - name: promos
-  - name: superheroes
   - name: users

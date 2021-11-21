@@ -1,7 +1,7 @@
 
 with source as (
 
-    select * from {{ source('greenery', 'superheroes') }}
+    select * from {{ source('tutorial', 'superheroes') }}
 
 ),
 
