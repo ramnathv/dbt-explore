@@ -33,6 +33,9 @@ clean-targets:         # directories to be removed by `dbt clean`
 # using the `{{ config(...) }}` macro.
 models:
   dbt_greenery:
-    # Config indicated by + and applies to all files under models/example/
-    greenery:
+    # Config indicated by + and applies to all files under models/staging/
+    staging:
       +materialized: view
+    
+snapshots:
+  +target_schema: snapshots
