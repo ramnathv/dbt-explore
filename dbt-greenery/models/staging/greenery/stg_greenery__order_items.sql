@@ -11,7 +11,7 @@ renamed as (
         id,
         order_id,
         product_id,
-        quantity
+        quantity AS item_quantity
 
     from source
 

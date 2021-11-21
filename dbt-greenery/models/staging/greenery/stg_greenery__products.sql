@@ -12,7 +12,7 @@ renamed as (
         product_id,
         name,
         price,
-        quantity
+        quantity AS product_quantity
 
     from source
 

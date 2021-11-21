@@ -65,7 +65,7 @@ models:
   - name: product_id
     description: 'The foreign key to the products table'
     tests: [not_null]
-  - name: quantity
+  - name: item_quantity
     description: 'The quantity ordered'
     tests: [positive_values]
 - name: stg_greenery__orders
@@ -116,8 +116,8 @@ models:
   - name: estimated_delivery_at
     description: 'A timestamp for the estimated delivery'
   - name: delivered_at
-    description: 'A timestamp for when the delivrey was actually made'
-  - name: status
+    description: 'A timestamp for when the delivery was actually made'
+  - name: order_status
     description: 'The status of the order'
     tests:
       - accepted_values:
@@ -138,7 +138,7 @@ models:
   - name: price
     description: 'The price of the product'
     tests: [positive_values]
-  - name: quantity
+  - name: product_quantity
     description: 'The quantity of the product'
     tests: [positive_values]
 - name: stg_greenery__promos
@@ -152,7 +152,7 @@ models:
     tests: [not_null, unique]
   - name: discount
     description: 'The percentage of discount provided'
-  - name: status
+  - name: promo_status
     description: 'The status of the promo'
     tests:
       - accepted_values:

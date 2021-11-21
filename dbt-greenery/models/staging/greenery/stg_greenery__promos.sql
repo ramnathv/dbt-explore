@@ -11,7 +11,7 @@ renamed as (
         id,
         promo_id,
         discout AS discount,
-        status
+        status AS promo_status
 
     from source
 
