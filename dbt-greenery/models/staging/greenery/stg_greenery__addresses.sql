@@ -9,14 +9,12 @@ renamed as (
 
     select
         address_id,
-
+        address,
         -- Dimensions
         country,
         state,
-        zipcode,
-        address
-    
-
+        zipcode
+       
     from source
 
 )
