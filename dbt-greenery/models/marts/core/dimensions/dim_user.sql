@@ -1,7 +1,7 @@
 
 WITH dim_user AS (
 
-SELECT user_id,
+SELECT u.user_id,
     
        -- Dimensions
        first_name,
@@ -12,8 +12,7 @@ SELECT user_id,
         -- Timestamps
         user_created_at,
         user_updated_at
-  FROM {{ ref('stg_greenery__users') }}
-
+  FROM {{ ref('stg_greenery__users') }} AS u
 )
 
 SELECT *
