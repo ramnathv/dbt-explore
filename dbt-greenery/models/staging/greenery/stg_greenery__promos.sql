@@ -8,10 +8,13 @@ with source as (
 renamed as (
 
     select
-        id,
         promo_id,
-        discout AS discount,
-        status AS promo_status
+
+        -- Dimensions
+        status AS promo_status,
+        
+        -- Facts
+        discout AS pct_discount
 
     from source
 

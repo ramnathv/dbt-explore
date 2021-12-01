@@ -8,13 +8,18 @@ with source as (
 renamed as (
 
     select
-        id,
         event_id,
+
+        -- Dimensions
+        page_url AS event_page_url,
+        event_type,
+
+        -- Timestamps
+        created_at AS event_created_at,
+
+        -- Foreign Keys
         session_id,
-        user_id,
-        page_url,
-        created_at,
-        event_type
+        user_id
 
     from source
 

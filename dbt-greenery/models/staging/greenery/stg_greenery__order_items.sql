@@ -8,10 +8,14 @@ with source as (
 renamed as (
 
     select
-        id,
+        id AS order_item_id,
+     
+        -- Measures
+        quantity AS nb_items,
+
+        -- Foreign keys
         order_id,
-        product_id,
-        quantity AS item_quantity
+        product_id
 
     from source
 

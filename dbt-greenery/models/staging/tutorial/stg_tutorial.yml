@@ -4,7 +4,7 @@ models:
   description: >
     Contains information about each superhero
   columns:
-  - name: id
+  - name: superhero_id
     description: 'The unique identifier'
   - name: name
     description: 'The name of the superhero'

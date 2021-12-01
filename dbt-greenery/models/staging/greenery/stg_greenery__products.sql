@@ -8,11 +8,14 @@ with source as (
 renamed as (
 
     select
-        id,
         product_id,
-        name,
-        price,
-        quantity AS product_quantity
+
+        -- Dimensions
+        name AS product_name,
+
+        -- Facts
+        price AS usd_product_price,
+        quantity AS nb_items_inventory
 
     from source
 

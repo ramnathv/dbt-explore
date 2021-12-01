@@ -8,7 +8,7 @@ with source as (
 renamed as (
 
     select
-        id,
+        id AS superhero_id,
         name,
         gender,
         eye_color,

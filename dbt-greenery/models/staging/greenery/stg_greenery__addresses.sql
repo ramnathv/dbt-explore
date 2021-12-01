@@ -8,12 +8,14 @@ with source as (
 renamed as (
 
     select
-        id,
         address_id,
-        address,
-        zipcode,
+
+        -- Dimensions
+        country,
         state,
-        country
+        zipcode,
+        address
+    
 
     from source
 

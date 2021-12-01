@@ -4,8 +4,6 @@ models:
   description: >
     Contains information about each address
   columns:
-  - name: id
-    description: 'The unique identifier'
   - name: address_id
     description: 'The primary key of each address'
     tests: [not_null, unique]
@@ -21,8 +19,6 @@ models:
   description: >
     Contains information about each event
   columns:
-  - name: id
-    description: 'The unique identifier'
   - name: event_id
     description: 'The primary key for the events table'
     tests: [not_null]
@@ -32,9 +28,9 @@ models:
   - name: user_id
     description: 'A foreign key to the users table'
     tests: [not_null]
-  - name: page_url
+  - name: event_page_url
     description: 'The url of the page visited'
-  - name: created_at
+  - name: event_created_at
     description: 'A timestamp for the event'
   - name: event_type
     description: >
@@ -57,23 +53,19 @@ models:
   description: >
     Contains information about items in an order
   columns:
-  - name: id
-    description: 'The unique identifier'
   - name: order_id
     description: 'The foreign key to the orders table'
     tests: [not_null]
   - name: product_id
     description: 'The foreign key to the products table'
     tests: [not_null]
-  - name: item_quantity
-    description: 'The quantity ordered'
+  - name: nb_items
+    description: 'The number of items ordered'
     tests: [positive_values]
 - name: stg_greenery__orders
   description: >
     Contains information about each order
   columns:
-  - name: id
-    description: 'The unique identifier'
   - name: order_id
     description: 'The primary key identifying an order'
     tests: 
@@ -98,15 +90,15 @@ models:
       - relationships:
           to: ref('stg_greenery__addresses')
           field: address_id
-  - name: created_at
+  - name: ordered_at
     description: 'A timestamp for when the order entry was created'
-  - name: order_cost
+  - name: usd_order_cost
     description: 'The purchase cost of the order'
     tests: [positive_values]
-  - name: shipping_cost
+  - name: usd_shipping_cost
     description: 'This cost for shipping the order'
     tests: [positive_values]
-  - name: order_total
+  - name: usd_total_cost
     description: 'The total cost of the order'
     # tests: [positive_values]
   - name: tracking_id
@@ -126,8 +118,6 @@ models:
   description: >
     Contains information about each product
   columns:
-  - name: id
-    description: 'The unique identifier'
   - name: product_id
     description: 'The primary key identifying the product'
     tests:
@@ -135,22 +125,20 @@ models:
       - unique
   - name: name
     description: 'The name of the product'
-  - name: price
+  - name: usd_product_price
     description: 'The price of the product'
     tests: [positive_values]
-  - name: product_quantity
-    description: 'The quantity of the product'
+  - name: nb_items_inventory
+    description: 'The number of items of the product in inventory'
     tests: [positive_values]
 - name: stg_greenery__promos
   description: >
     Contains information about promotions
   columns:
-  - name: id
-    description: 'The unique identifier'
   - name: promo_id
     description: 'The primary key identifying the promo'
     tests: [not_null, unique]
-  - name: discount
+  - name: pct_discount
     description: 'The percentage of discount provided'
   - name: promo_status
     description: 'The status of the promo'
@@ -161,8 +149,6 @@ models:
   description: >
     Contains information about each user
   columns:
-  - name: id
-    description: 'The unique identifier'
   - name: user_id
     description: 'The primary key identifying each user'
     tests: [not_null, unique]
@@ -176,9 +162,9 @@ models:
     description: 'The email of the user'
   - name: phone_number
     description: 'The phone number of the user'
-  - name: created_at
+  - name: user_created_at
     description: 'A timestamp for when the entry was created'
-  - name: updated_at
+  - name: user_updated_at
     description: 'A timestamp for when the entry was updated'
     tests: [not_null]
 
