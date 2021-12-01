@@ -19,7 +19,10 @@ renamed as (
 
         -- Foreign Keys
         session_id,
-        user_id
+        user_id,
+        CASE
+           WHEN page_url LIKE '%product%' THEN REPLACE(page_url, 'https://greenary.com/product/', '')
+        END AS product_id 
 
     from source
 

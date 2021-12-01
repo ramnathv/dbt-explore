@@ -28,6 +28,8 @@ models:
   - name: user_id
     description: 'A foreign key to the users table'
     tests: [not_null]
+  - name: product_id
+    description: 'A foreign key to the products table'
   - name: event_page_url
     description: 'The url of the page visited'
   - name: event_created_at
