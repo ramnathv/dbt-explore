@@ -10,13 +10,20 @@ ORDER BY session_id, event_created_at_latest
 ),
 
 session_product_pivoted AS (
-SELECT session_id,
-       product_id,
-       MIN( CASE WHEN event_type = 'page_view' THEN event_created_at_latest END) AS page_view_at,
-       MIN( CASE WHEN event_type = 'add_to_cart' THEN event_created_at_latest END) AS add_to_cart_at,
-       MIN( CASE WHEN event_type = 'delete_from_cart' THEN event_created_at_latest END) AS delete_from_cart_at
-  FROM session_product
- GROUP BY 1, 2
+  SELECT session_id,
+         product_id,
+         {{ 
+            dbt_utils.pivot(
+              column='event_type',
+              values=['page_view', 'add_to_cart', 'delete_from_cart'],
+              then_value="event_created_at_latest",
+              else_value="NULL",
+              agg="MIN",
+              suffix='_at'
+            )
+         }}
+    FROM session_product
+   GROUP BY 1, 2
 ),
 
 session_product_pivoted_enriched AS (

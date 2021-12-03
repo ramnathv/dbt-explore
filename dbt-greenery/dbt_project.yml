@@ -45,4 +45,4 @@ snapshots:
   +target_schema: snapshots
 
 on-run-end: 
-  - "GRANT USAGE ON SCHEMA {{ schema }} TO reporting"
+  - "{{ grant(role='reporting', select=False) }}"

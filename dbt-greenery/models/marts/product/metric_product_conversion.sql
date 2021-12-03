@@ -1,8 +1,8 @@
 WITH metric_product_conversion AS (
 SELECT product_id,
        COUNT(*) AS nb_sessions,
-       SUM(CASE WHEN is_in_cart THEN 1 ELSE 0 END) AS nb_cart,
-       SUM(CASE WHEN is_in_cart_at_checkout THEN 1 ELSE 0 END)  AS nb_checkouts
+       {{ sum_if("is_in_cart") }} AS nb_cart,
+       {{ sum_if("is_in_cart_at_checkout") }}  AS nb_checkouts
    FROM {{ ref("fct_register_session") }}
  WHERE product_id IS NOT NULL
  GROUP BY 1
