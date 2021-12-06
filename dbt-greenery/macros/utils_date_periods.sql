@@ -11,9 +11,10 @@ WITH dates AS ({{
 
 -- Window Periods
 windows AS (
-  (SELECT 'rolling_7d' AS period, ROW_NUMBER() OVER() AS nb_days FROM dates LIMIT 7) UNION 
-  (SELECT 'rolling_28d' AS period, ROW_NUMBER() OVER() AS nb_days FROM dates LIMIT 28) UNION
-  (SELECT 'rolling_28d' AS period, ROW_NUMBER() OVER() AS nb_days FROM dates LIMIT 56)
+  {% for nb_days in [7, 28, 56] %}
+  (SELECT 'rolling_{{ nb_days}}d' AS period, ROW_NUMBER() OVER() AS nb_days FROM dates LIMIT {{ nb_days }})
+  {% if not loop.last %} UNION {% endif %}
+  {% endfor %}
 ),
 
 date_periods_windows AS (
