@@ -12,10 +12,7 @@ metric_event_pivoted AS (
 SELECT date,
        {{ dbt_utils.pivot(
             column = "event_type", 
-            values = dbt_utils.get_column_values(
-              ref("mart_event"),
-              'event_type'
-            ),
+            values = ['delete_from_cart', 'checkout', 'add_to_cart', 'page_view', 'package_shipped', 'account_created'],
             then_value = "nb_users"
           )
        }}
