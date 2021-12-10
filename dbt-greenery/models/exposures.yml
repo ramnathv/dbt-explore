@@ -3,6 +3,7 @@ exposures:
   - name: Session Funnel Dashboard
     type: dashboard
     maturity: high
+    url: https://share.streamlit.io/ramnathv/session-funnel-dashboard/main/app.py
     description: >
       Models that are critical to our product funnel dashboard
     owner:
