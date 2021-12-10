@@ -1,0 +1,12 @@
+version: 2
+exposures:
+  - name: Session Funnel Dashboard
+    type: dashboard
+    maturity: high
+    description: >
+      Models that are critical to our product funnel dashboard
+    owner:
+      name: Ramnath Vaidyanathan
+      email: ramnath.vaidya@gmail.com
+    depends_on:
+      - ref('mart_event')
