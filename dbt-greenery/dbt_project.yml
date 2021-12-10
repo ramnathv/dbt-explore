@@ -36,13 +36,14 @@ models:
     # Config indicated by + and applies to all files under models/staging/
     staging:
       +materialized: view
+      +tags: staging
     marts:
       +materialized: table
       post-hook:
-        - "{{ grant(role='reporting') }}"
+        - "{{ grant_select(role='reporting') }}"
     
 snapshots:
   +target_schema: snapshots
 
 on-run-end: 
-  - "{{ grant(role='reporting', select=False) }}"
+  - "{{ grant_usage(role='reporting') }}"
