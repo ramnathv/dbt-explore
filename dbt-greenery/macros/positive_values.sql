@@ -1,4 +1,4 @@
-{% test positive_values(model, column_name) %}
+{% test is_positive(model, column_name) %}
 
 SELECT *
   FROM {{ model }}

@@ -1,5 +1,5 @@
 
-{%macro utils_date_periods(start_date, end_date) %}
+{% macro utils_date_periods(start_date, end_date) %}
 
 WITH dates AS ({{ 
     dbt_utils.date_spine(

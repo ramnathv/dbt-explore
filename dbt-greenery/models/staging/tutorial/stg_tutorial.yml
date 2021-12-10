@@ -18,7 +18,7 @@ models:
     description: 'The hair color of the superhero'
   - name: height
     description: 'The height of the superhero'
-    tests: [positive_values]
+    tests: [is_positive]
   - name: publisher
     description: 'The publisher of the comic'
   - name: skin_color
@@ -27,10 +27,10 @@ models:
     description: 'Alignment of the superhero (good / bad)'
   - name: weight_lbs
     description: 'The weight of the superhero in lbs'
-    tests: [positive_values]
+    tests: [is_positive]
   - name: weight_kgs
     description: 'The weight of the superhero in Kgs.'
-    tests: [positive_values]
+    tests: [is_positive]
   - name: created_at
     description: 'A timestamp when the entry was created'
   - name: updated_at

@@ -63,7 +63,7 @@ models:
     tests: [not_null]
   - name: nb_items
     description: 'The number of items ordered'
-    tests: [positive_values]
+    tests: [is_positive]
 - name: stg_greenery__orders
   description: >
     Contains information about each order
@@ -96,13 +96,13 @@ models:
     description: 'A timestamp for when the order entry was created'
   - name: usd_order_cost
     description: 'The purchase cost of the order'
-    tests: [positive_values]
+    tests: [is_positive]
   - name: usd_shipping_cost
     description: 'This cost for shipping the order'
-    tests: [positive_values]
+    tests: [is_positive]
   - name: usd_total_cost
     description: 'The total cost of the order'
-    # tests: [positive_values]
+    # tests: [is_positive]
   - name: tracking_id
     description: 'The tracking id for the shipment'
   - name: shipping_service
@@ -129,10 +129,10 @@ models:
     description: 'The name of the product'
   - name: usd_product_price
     description: 'The price of the product'
-    tests: [positive_values]
+    tests: [is_positive]
   - name: nb_items_inventory
     description: 'The number of items of the product in inventory'
-    tests: [positive_values]
+    tests: [is_positive]
 - name: stg_greenery__promos
   description: >
     Contains information about promotions
